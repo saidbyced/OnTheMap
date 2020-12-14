@@ -32,14 +32,16 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let nextTag = textField.tag + 1
+        if emailTextField.hasText && passwordTextField.hasText {
+            // Log in
+        }
         
-        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+        if let nextResponder = textField.superview?.viewWithTag(textField.tag + 1) {
             nextResponder.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
         }
-        
+
         return true
     }
 }
