@@ -7,7 +7,7 @@
 
 import Foundation
 
-class OnTheMapAPI {
+struct OnTheMapAPI {
     static let scheme = "https"
     static let host = "onthemap-api.udacity.com/v1/"
     
@@ -54,7 +54,7 @@ class OnTheMapAPI {
         }
     }
     
-    class func getLocations() {
+    static func getLocations(completion: @escaping ([Location]?, Error?) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = OnTheMapAPI.scheme
         urlComponents.host = OnTheMapAPI.host
@@ -65,9 +65,34 @@ class OnTheMapAPI {
         ]
         
         guard let url = urlComponents.url else {
-            fatalError()
+            // FIXME: Handle url creation error failure
+            print("URL creation failed")
+            return
         }
         
-        print("\(url)")
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                // FIXME: Handle request failure error response
+                print(error.localizedDescription)
+            }
+            
+            guard let data = data else {
+                // FIXME: Handle missing data error
+                completion(nil, error)
+                return
+            }
+            
+            do {
+                let decodedData = try JSONDecoder().decode(StudentLocationsResponse.self, from: data)
+                let locations = decodedData.results
+                completion(locations, nil)
+            } catch {
+                // FIXME: Handle JSON parsing error
+                print(error.localizedDescription)
+            }
+        }
+        
+        task.resume()
     }
+    
 }
