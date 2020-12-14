@@ -43,7 +43,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04b-2A-tNs" userLabel="HStack">
-                                <rect key="frame" x="86.5" y="384" width="241" height="33"/>
+                                <rect key="frame" x="86.5" y="374" width="241" height="33"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? " textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sln-7t-FAm" userLabel="No Account Label">
                                         <rect key="frame" x="0.0" y="0.0" width="183" height="33"/>
@@ -74,7 +74,7 @@
                             <constraint firstItem="lm4-xl-7qs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IE5-WY-hFx"/>
                             <constraint firstItem="8bM-U5-Nqv" firstAttribute="top" secondItem="lm4-xl-7qs" secondAttribute="bottom" constant="50" id="KNA-7e-NTj"/>
                             <constraint firstItem="lm4-xl-7qs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Rab-7C-uMX"/>
-                            <constraint firstItem="04b-2A-tNs" firstAttribute="top" secondItem="8bM-U5-Nqv" secondAttribute="bottom" constant="25" id="lJZ-Yv-Rcv"/>
+                            <constraint firstItem="04b-2A-tNs" firstAttribute="top" secondItem="8bM-U5-Nqv" secondAttribute="bottom" constant="15" id="lJZ-Yv-Rcv"/>
                         </constraints>
                     </view>
                 </viewController>
