@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aF9-11-0HN" userLabel="VStack">
-                                <rect key="frame" x="188" y="463.5" width="206" height="398.5"/>
+                                <rect key="frame" x="188" y="443.5" width="206" height="398.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="70" translatesAutoresizingMaskIntoConstraints="NO" id="yqf-92-XfP">
                                         <rect key="frame" x="0.0" y="0.0" width="206" height="358.5"/>
@@ -53,7 +53,7 @@ Map</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="aF9-11-0HN" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-20" id="7DZ-Q9-CEl"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aF9-11-0HN" secondAttribute="bottom" id="Vol-Rl-lF8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aF9-11-0HN" secondAttribute="bottom" constant="20" id="Vol-Rl-lF8"/>
                         </constraints>
                     </view>
                 </viewController>
