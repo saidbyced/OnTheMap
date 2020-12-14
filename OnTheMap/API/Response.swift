@@ -11,7 +11,7 @@ struct StudentLocationsResponse: Codable {
     let results: [LocationResponse]
 }
 
-struct LocationResponse: Codable {
+struct Location: Codable {
     let createdAt: String
     let firstName: String
     let lastName: String
