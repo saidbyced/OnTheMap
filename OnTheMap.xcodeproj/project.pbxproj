@@ -50,6 +50,23 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		1B69AECE258925740080BDDD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1B9D97042583D4C800CC53EB /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		1B69AECF2589258E0080BDDD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1B9D97062583D4C800CC53EB /* Main.storyboard */,
+				1B9D970B2583D4D000CC53EB /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		1B9D96F42583D4C800CC53EB = {
 			isa = PBXGroup;
 			children = (
@@ -69,13 +86,12 @@
 		1B9D96FF2583D4C800CC53EB /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				1B69AECF2589258E0080BDDD /* Views */,
+				1B69AECE258925740080BDDD /* Login */,
+				1B5F39142583DC2F008FD47C /* API */,
 				1B9D97002583D4C800CC53EB /* AppDelegate.swift */,
 				1B9D97022583D4C800CC53EB /* SceneDelegate.swift */,
-				1B9D97042583D4C800CC53EB /* LoginViewController.swift */,
-				1B5F39142583DC2F008FD47C /* API */,
-				1B9D97062583D4C800CC53EB /* Main.storyboard */,
 				1B9D97092583D4D000CC53EB /* Assets.xcassets */,
-				1B9D970B2583D4D000CC53EB /* LaunchScreen.storyboard */,
 				1B9D970E2583D4D000CC53EB /* Info.plist */,
 			);
 			path = OnTheMap;
