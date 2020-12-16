@@ -9,11 +9,11 @@ import Foundation
 
 struct OnTheMapAPI {
     static let scheme = "https"
-    static let host = "onthemap-api.udacity.com/v1/"
+    static let host = "onthemap-api.udacity.com"
     
     struct Path {
-        static let studentLocation = "StudentLocation"
-        static let session = "session"
+        static let studentLocation = "/v1/StudentLocation"
+        static let session = "/v1/session"
         
         func userId(_ id: Int) -> String {
             return "/users/\(id)"
@@ -73,22 +73,30 @@ struct OnTheMapAPI {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 // FIXME: Handle request failure error response
-                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
             }
             
             guard let data = data else {
                 // FIXME: Handle missing data error
-                completion(nil, error)
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
                 return
             }
             
             do {
                 let decodedData = try JSONDecoder().decode(StudentLocationsResponse.self, from: data)
                 let locations = decodedData.results
-                completion(locations, nil)
+                DispatchQueue.main.async {
+                    completion(locations, nil)
+                }
             } catch {
                 // FIXME: Handle JSON parsing error
-                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
             }
         }
         
