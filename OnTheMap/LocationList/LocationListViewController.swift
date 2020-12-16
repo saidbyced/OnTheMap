@@ -9,8 +9,6 @@ import UIKit
 
 class LocationListViewController: UITableViewController {
     
-    var locations: [Location]?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,7 +18,7 @@ class LocationListViewController: UITableViewController {
     func handleLocationsResponse(locations: [Location]?, error: Error?) {
         if let locations = locations {
             print(locations.count)
-            self.locations = locations
+            LocationList.locations = locations
             tableView.reloadData()
         }
     }
@@ -30,13 +28,11 @@ class LocationListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations?.count ?? 0
+        return LocationList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let location = locations?[indexPath.row] else {
-            return UITableViewCell()
-        }
+        let location = LocationList.location(indexPath.row)
         let name = "\(location.firstName.capitalized) \(location.lastName.capitalized)"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell") else {
