@@ -12,21 +12,13 @@ struct StudentLocationsResponse: Codable {
 }
 
 struct Location: Codable {
-    let createdAt: String
-    let firstName: String
-    let lastName: String
-    let latitude: Double
-    let longitude: Double
-    let mapString: String
-    let mediaURL: String
-    let objectId: String
-    let uniqueKey: Int
-    let updatedAt: String
+    let firstName, lastName: String
+    let longitude, latitude: Double
+    let mapString, mediaURL, uniqueKey, objectId, createdAt, updatedAt: String
 }
 
 struct CreationResponse: Codable {
-    let createdAt: String
-    let objectId: String
+    let createdAt, objectId: String
 }
 
 struct UpdateResponse: Codable {
