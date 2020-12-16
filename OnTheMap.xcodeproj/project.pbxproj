@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B5F390F2583DC13008FD47C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5F390E2583DC13008FD47C /* Request.swift */; };
 		1B5F39122583DC1E008FD47C /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5F39112583DC1E008FD47C /* Response.swift */; };
+		1B69AED2258928E80080BDDD /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69AED1258928E80080BDDD /* LocationListViewController.swift */; };
 		1B9D97012583D4C800CC53EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9D97002583D4C800CC53EB /* AppDelegate.swift */; };
 		1B9D97032583D4C800CC53EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9D97022583D4C800CC53EB /* SceneDelegate.swift */; };
 		1B9D97052583D4C800CC53EB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9D97042583D4C800CC53EB /* LoginViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		1B5F390E2583DC13008FD47C /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		1B5F39112583DC1E008FD47C /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		1B69AED1258928E80080BDDD /* LocationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
 		1B9D96FD2583D4C800CC53EB /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B9D97002583D4C800CC53EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B9D97022583D4C800CC53EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		1B69AED4258928F00080BDDD /* LocationList */ = {
+			isa = PBXGroup;
+			children = (
+				1B69AED1258928E80080BDDD /* LocationListViewController.swift */,
+			);
+			path = LocationList;
+			sourceTree = "<group>";
+		};
 		1B9D96F42583D4C800CC53EB = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +98,7 @@
 			children = (
 				1B69AECF2589258E0080BDDD /* Views */,
 				1B69AECE258925740080BDDD /* Login */,
+				1B69AED4258928F00080BDDD /* LocationList */,
 				1B5F39142583DC2F008FD47C /* API */,
 				1B9D97002583D4C800CC53EB /* AppDelegate.swift */,
 				1B9D97022583D4C800CC53EB /* SceneDelegate.swift */,
@@ -171,6 +182,7 @@
 				1B5F390F2583DC13008FD47C /* Request.swift in Sources */,
 				1B9D97012583D4C800CC53EB /* AppDelegate.swift in Sources */,
 				1B9D97032583D4C800CC53EB /* SceneDelegate.swift in Sources */,
+				1B69AED2258928E80080BDDD /* LocationListViewController.swift in Sources */,
 				1B5F39122583DC1E008FD47C /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
