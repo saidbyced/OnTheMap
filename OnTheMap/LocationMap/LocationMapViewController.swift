@@ -24,6 +24,8 @@ class LocationMapViewController: UIViewController {
     func getLocations() {
         if LocationList.count == 0 {
             OnTheMapAPI.getLocations(completion: handleLocationsResponse(locations:error:))
+        } else {
+            self.addAnnotations(limit: 50)
         }
     }
     
