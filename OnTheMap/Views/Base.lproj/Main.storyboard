@@ -88,10 +88,10 @@
             </objects>
             <point key="canvasLocation" x="-9370" y="-1095"/>
         </scene>
-        <!--Location List View Controller-->
+        <!--Location List-->
         <scene sceneID="BO1-fv-1SH">
             <objects>
-                <tableViewController id="4qr-4P-Iso" customClass="LocationListViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="4qr-4P-Iso" userLabel="Location List" customClass="LocationListViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jCs-ga-9Md">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -132,16 +132,16 @@
                             <outlet property="delegate" destination="4qr-4P-Iso" id="GFE-gQ-Ov6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="nvs-uj-z2i"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="nvs-uj-z2i"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKT-dE-xeP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-10175" y="-763"/>
         </scene>
-        <!--Location Map View Controller-->
+        <!--Location Map-->
         <scene sceneID="PhI-eA-WAj">
             <objects>
-                <viewController id="xEX-uW-KWP" customClass="LocationMapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xEX-uW-KWP" userLabel="Location Map" customClass="LocationMapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hva-Y2-fDs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -159,7 +159,7 @@
                             <constraint firstItem="EGK-Mf-RRP" firstAttribute="leading" secondItem="5B0-zW-Onf" secondAttribute="leading" id="lSS-E9-IKg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="t10-5x-Z4e"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="t10-5x-Z4e"/>
                     <connections>
                         <outlet property="mapView" destination="EGK-Mf-RRP" id="MI3-q8-Y4p"/>
                     </connections>
@@ -168,10 +168,10 @@
             </objects>
             <point key="canvasLocation" x="-10175" y="-1427"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Nav for Location List-->
         <scene sceneID="wXP-s4-d68">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ihm-nU-G5l" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ihm-nU-G5l" userLabel="Nav for Location List" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="list.bullet" catalog="system" selectedImage="list.bullet" id="u5W-dE-Ov5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xni-Ld-byF">
@@ -187,10 +187,10 @@
             </objects>
             <point key="canvasLocation" x="-11086" y="-763"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Nav for Location Map-->
         <scene sceneID="XBZ-DZ-GFC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nUc-Ak-1LZ" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nUc-Ak-1LZ" userLabel="Nav for Location Map" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="map" catalog="system" selectedImage="map" id="kMb-6B-A3n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UyV-zZ-bX8">
@@ -206,10 +206,10 @@
             </objects>
             <point key="canvasLocation" x="-11086" y="-1427"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar for Map and List-->
         <scene sceneID="SFL-Ha-DaZ">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="myW-br-3Zy" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="myW-br-3Zy" userLabel="Tab Bar for Map and List" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DEv-n9-0zu">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
