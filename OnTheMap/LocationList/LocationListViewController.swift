@@ -22,22 +22,6 @@ class LocationListViewController: UITableViewController, UINavigationControllerD
         getLocations()
     }
     
-    func getLocations() {
-        if LocationList.count == 0 {
-            OnTheMapAPI.getLocations(completion: handleLocationsResponse(locations:error:))
-        }
-    }
-    
-    func handleLocationsResponse(locations: [Location]?, error: Error?) {
-        if let locations = locations {
-            LocationList.locations = locations
-            tableView.reloadData()
-        } else {
-            // FIXME: Handle no locations received
-            print(error?.localizedDescription ?? "Error: no locations")
-        }
-    }
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -59,4 +43,21 @@ class LocationListViewController: UITableViewController, UINavigationControllerD
         
         return cell
     }
+    
+    func getLocations() {
+        if LocationList.count == 0 {
+            OnTheMapAPI.getLocations(completion: handleLocationsResponse(locations:error:))
+        }
+    }
+    
+    func handleLocationsResponse(locations: [Location]?, error: Error?) {
+        if let locations = locations {
+            LocationList.locations = locations
+            tableView.reloadData()
+        } else {
+            // FIXME: Handle no locations received
+            print(error?.localizedDescription ?? "Error: no locations")
+        }
+    }
+    
 }
