@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StudentLocationsResponse: Codable {
+struct LocationsResponse: Codable {
     let results: [Location]
 }
 
