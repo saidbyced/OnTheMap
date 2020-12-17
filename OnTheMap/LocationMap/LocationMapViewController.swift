@@ -60,7 +60,7 @@ extension LocationMapViewController: UINavigationControllerDelegate {
     }
     
     @objc func goToLogIn() {
-        // Go to login VC
+        performSegue(withIdentifier: "logIn", sender: self)
     }
     
 }
