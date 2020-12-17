@@ -21,6 +21,22 @@ class LoginViewController: UIViewController {
         setTextFieldDelegates()
     }
     
+    
+    @IBAction func logInButtonTapped(_ sender: Any) {
+        guard let username = emailTextField.text, let password = passwordTextField.text else {
+            // FIXME: Display alert requesting username and password be entered
+            return
+        }
+        
+        OnTheMapAPI.postSession(username: username, password: password, completion: handleSessionResponse(sessionId:error:))
+    }
+    
+    func handleSessionResponse(sessionId: String?, error: Error?) {
+        if let sessionId = sessionId {
+            Session.id = sessionId
+        }
+    }
+    
 }
 
 extension LoginViewController: UITextFieldDelegate {
