@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B45931E258BA83E00675849 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B45931D258BA83E00675849 /* SessionResponse.swift */; };
+		1B459323258BADCA00675849 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B459322258BADCA00675849 /* Session.swift */; };
 		1B5F390F2583DC13008FD47C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5F390E2583DC13008FD47C /* Request.swift */; };
-		1B5F39122583DC1E008FD47C /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5F39112583DC1E008FD47C /* Response.swift */; };
+		1B5F39122583DC1E008FD47C /* LocationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5F39112583DC1E008FD47C /* LocationsResponse.swift */; };
 		1B69AED2258928E80080BDDD /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69AED1258928E80080BDDD /* LocationListViewController.swift */; };
 		1B69AEE1258A24D40080BDDD /* LocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B69AEE0258A24D40080BDDD /* LocationMapViewController.swift */; };
 		1B79041C258B6C500021A120 /* LocationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B79041B258B6C500021A120 /* LocationList.swift */; };
@@ -21,8 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B45931D258BA83E00675849 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
+		1B459322258BADCA00675849 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		1B5F390E2583DC13008FD47C /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		1B5F39112583DC1E008FD47C /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		1B5F39112583DC1E008FD47C /* LocationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsResponse.swift; sourceTree = "<group>"; };
 		1B69AED1258928E80080BDDD /* LocationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
 		1B69AEE0258A24D40080BDDD /* LocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewController.swift; sourceTree = "<group>"; };
 		1B79041B258B6C500021A120 /* LocationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationList.swift; sourceTree = "<group>"; };
@@ -51,7 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				1B5F390E2583DC13008FD47C /* Request.swift */,
-				1B5F39112583DC1E008FD47C /* Response.swift */,
+				1B5F39112583DC1E008FD47C /* LocationsResponse.swift */,
+				1B45931D258BA83E00675849 /* SessionResponse.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -93,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				1B79041B258B6C500021A120 /* LocationList.swift */,
+				1B459322258BADCA00675849 /* Session.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -200,14 +206,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B459323258BADCA00675849 /* Session.swift in Sources */,
 				1B9D97052583D4C800CC53EB /* LoginViewController.swift in Sources */,
 				1B5F390F2583DC13008FD47C /* Request.swift in Sources */,
 				1B69AEE1258A24D40080BDDD /* LocationMapViewController.swift in Sources */,
 				1B9D97012583D4C800CC53EB /* AppDelegate.swift in Sources */,
 				1B79041C258B6C500021A120 /* LocationList.swift in Sources */,
+				1B45931E258BA83E00675849 /* SessionResponse.swift in Sources */,
 				1B9D97032583D4C800CC53EB /* SceneDelegate.swift in Sources */,
 				1B69AED2258928E80080BDDD /* LocationListViewController.swift in Sources */,
-				1B5F39122583DC1E008FD47C /* Response.swift in Sources */,
+				1B5F39122583DC1E008FD47C /* LocationsResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
