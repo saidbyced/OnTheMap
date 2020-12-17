@@ -7,17 +7,12 @@
 
 import UIKit
 
-class LocationListViewController: UITableViewController, UINavigationControllerDelegate {
+class LocationListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.delegate = self
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: nil)
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: nil),
-            UIBarButtonItem(title: "Add", style: .plain, target: self, action: nil)
-        ]
+        setUpNavBar()
         
         getLocations()
     }
@@ -58,6 +53,29 @@ class LocationListViewController: UITableViewController, UINavigationControllerD
             // FIXME: Handle no locations received
             print(error?.localizedDescription ?? "Error: no locations")
         }
+    }
+    
+}
+
+extension LocationListViewController: UINavigationControllerDelegate {
+    
+    func setUpNavBar() {
+        navigationController?.delegate = self
+        
+        let loggedIn = false // Placeholder for when session has been set up
+        let logInOutButtonTitle = loggedIn ? "Log out" : "Log in"
+        
+        let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        addButton.isEnabled = loggedIn
+        
+        navigationItem.leftBarButtonItem = logInOutButton
+        navigationItem.rightBarButtonItems = [addButton, refreshButton]
+    }
+    
+    @objc func goToLogIn() {
+        // Go to login VC
     }
     
 }

@@ -7,7 +7,7 @@
 import UIKit
 import MapKit
 
-class LocationMapViewController: UIViewController, UINavigationControllerDelegate {
+class LocationMapViewController: UIViewController {
     
     var annotations = [MKPointAnnotation]()
     
@@ -16,15 +16,9 @@ class LocationMapViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpNavBar()
+        
         mapView.delegate = self
-        
-        navigationController?.delegate = self
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: nil)
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: nil),
-            UIBarButtonItem(title: "Add", style: .plain, target: self, action: nil)
-        ]
-        
         getLocations()
     }
     
@@ -48,6 +42,29 @@ class LocationMapViewController: UIViewController, UINavigationControllerDelegat
     
 }
 
+extension LocationMapViewController: UINavigationControllerDelegate {
+    
+    func setUpNavBar() {
+        navigationController?.delegate = self
+        
+        let loggedIn = false // Placeholder for when session has been set up
+        let logInOutButtonTitle = loggedIn ? "Log out" : "Log in"
+        
+        let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        addButton.isEnabled = loggedIn
+        
+        navigationItem.leftBarButtonItem = logInOutButton
+        navigationItem.rightBarButtonItems = [addButton, refreshButton]
+    }
+    
+    @objc func goToLogIn() {
+        // Go to login VC
+    }
+    
+}
+
 extension LocationMapViewController: MKMapViewDelegate {
     
     func addAnnotations(limit: Int) {
@@ -56,7 +73,7 @@ extension LocationMapViewController: MKMapViewDelegate {
         for location in LocationList.locations[0...(limit - 1)] {
             annotations.append(annotationFor(location))
         }
-        // When the array is complete, we add the annotations to the map.
+        
         self.mapView.addAnnotations(annotations)
     }
     
