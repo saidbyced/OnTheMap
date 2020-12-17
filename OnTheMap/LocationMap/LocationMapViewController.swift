@@ -7,36 +7,64 @@
 import UIKit
 import MapKit
 
-class LocationMapViewController: UIViewController, MKMapViewDelegate {
+class LocationMapViewController: UIViewController {
+    
+    var annotations = [MKPointAnnotation]()
     
     @IBOutlet weak var mapView: MKMapView!
-    
-    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.requestWhenInUseAuthorization()
-        getInitialLocation()
+        getLocations()
         
         mapView.delegate = self
     }
     
-}
-
-extension LocationMapViewController: CLLocationManagerDelegate {
-
-    func getInitialLocation() {
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
+    func getLocations() {
+        if LocationList.count == 0 {
+            OnTheMapAPI.getLocations(completion: handleLocationsResponse(locations:error:))
         }
     }
+    
+    func handleLocationsResponse(locations: [Location]?, error: Error?) {
+        if let locations = locations {
+            LocationList.locations = locations
+            self.addAnnotations(limit: 50)
+        } else {
+            // FIXME: Handle no locations received
+            print(error?.localizedDescription ?? "Error: no locations")
+        }
+    }
+    
+}
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        mapView.centerCoordinate = location
+extension LocationMapViewController: MKMapViewDelegate {
+    
+    func addAnnotations(limit: Int) {
+        guard LocationList.count > 0 else { return }
+        
+        for location in LocationList.locations[0...(limit - 1)] {
+            annotations.append(annotationFor(location))
+        }
+        // When the array is complete, we add the annotations to the map.
+        self.mapView.addAnnotations(annotations)
+    }
+    
+    func annotationFor(_ location: Location) -> MKPointAnnotation {
+        let latitude = CLLocationDegrees(location.latitude)
+        let longitude = CLLocationDegrees(location.longitude)
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        
+        let name = "\(location.firstName) \(location.lastName)"
+        let mediaURL = location.mediaURL
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        annotation.title = name
+        annotation.subtitle = mediaURL
+        
+        return annotation
     }
     
 }
