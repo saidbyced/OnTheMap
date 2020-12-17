@@ -16,9 +16,9 @@ class LocationMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getLocations()
-        
         mapView.delegate = self
+        
+        getLocations()
     }
     
     func getLocations() {
