@@ -12,12 +12,17 @@ class LocationListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        OnTheMapAPI.getLocations(completion: handleLocationsResponse(locations:error:))
+        getLocations()
+    }
+    
+    func getLocations() {
+        if LocationList.count == 0 {
+            OnTheMapAPI.getLocations(completion: handleLocationsResponse(locations:error:))
+        }
     }
     
     func handleLocationsResponse(locations: [Location]?, error: Error?) {
         if let locations = locations {
-            print(locations.count)
             LocationList.locations = locations
             tableView.reloadData()
         }
