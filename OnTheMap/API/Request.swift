@@ -60,7 +60,7 @@ struct OnTheMapAPI {
         urlComponents.host = OnTheMapAPI.host
         urlComponents.path = OnTheMapAPI.Path.studentLocation
         urlComponents.queryItems = [
-            OnTheMapAPI.Params.limit(100).asQueryItem,
+            OnTheMapAPI.Params.limit(200).asQueryItem,
             OnTheMapAPI.Params.order(.updatedAtDescending).asQueryItem
         ]
         
