@@ -93,4 +93,11 @@ extension LocationMapViewController: MKMapViewDelegate {
         return annotation
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+        annotationView.pinTintColor = UIColor(red: 2/256, green: 179/256, blue: 228/256, alpha: 1)
+        
+        return annotationView
+    }
+    
 }
