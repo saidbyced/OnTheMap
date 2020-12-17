@@ -26,14 +26,14 @@ class LocationMapViewController: UIViewController {
         if LocationList.count == 0 {
             OnTheMapAPI.getLocations(completion: handleLocationsResponse(locations:error:))
         } else {
-            self.addAnnotations(limit: 50)
+            self.addAnnotations(limit: 100)
         }
     }
     
     func handleLocationsResponse(locations: [Location]?, error: Error?) {
         if let locations = locations {
             LocationList.locations = locations
-            self.addAnnotations(limit: 50)
+            self.addAnnotations(limit: 100)
         } else {
             // FIXME: Handle no locations received
             print(error?.localizedDescription ?? "Error: no locations")
