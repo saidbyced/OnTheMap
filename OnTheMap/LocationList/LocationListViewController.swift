@@ -25,6 +25,9 @@ class LocationListViewController: UITableViewController {
         if let locations = locations {
             LocationList.locations = locations
             tableView.reloadData()
+        } else {
+            // FIXME: Handle no locations received
+            print(error?.localizedDescription ?? "Error: no locations")
         }
     }
     
