@@ -7,10 +7,17 @@
 
 import UIKit
 
-class LocationListViewController: UITableViewController {
+class LocationListViewController: UITableViewController, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.delegate = self
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: nil),
+            UIBarButtonItem(title: "Add", style: .plain, target: self, action: nil)
+        ]
         
         getLocations()
     }

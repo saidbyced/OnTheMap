@@ -7,7 +7,7 @@
 import UIKit
 import MapKit
 
-class LocationMapViewController: UIViewController {
+class LocationMapViewController: UIViewController, UINavigationControllerDelegate {
     
     var annotations = [MKPointAnnotation]()
     
@@ -17,6 +17,13 @@ class LocationMapViewController: UIViewController {
         super.viewDidLoad()
         
         mapView.delegate = self
+        
+        navigationController?.delegate = self
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: nil)
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: nil),
+            UIBarButtonItem(title: "Add", style: .plain, target: self, action: nil)
+        ]
         
         getLocations()
     }
