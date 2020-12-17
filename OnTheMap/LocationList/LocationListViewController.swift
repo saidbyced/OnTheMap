@@ -34,11 +34,13 @@ class LocationListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let location = LocationList.location(indexPath.row)
         let name = "\(location.firstName.capitalized) \(location.lastName.capitalized)"
+        let url = location.mediaURL
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell") else {
             return UITableViewCell()
         }
         cell.textLabel?.text = name
+        cell.detailTextLabel?.text = url
         
         return cell
     }
