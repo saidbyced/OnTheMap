@@ -9,14 +9,19 @@ import UIKit
 
 class LocationListViewController: UITableViewController {
     
-    var loggedIn: Bool { return Session.loggedIn }
+    var loggedIn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.delegate = self
         setUpNavBar()
         
         getLocations()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setUpNavBar()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,8 +67,7 @@ class LocationListViewController: UITableViewController {
 extension LocationListViewController: UINavigationControllerDelegate {
     
     func setUpNavBar() {
-        navigationController?.delegate = self
-        
+        loggedIn = Session.loggedIn
         let logInOutButtonTitle = loggedIn ? "Log out" : "Log in"
         
         let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))

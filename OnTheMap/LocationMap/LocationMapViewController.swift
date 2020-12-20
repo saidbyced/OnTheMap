@@ -9,7 +9,7 @@ import MapKit
 
 class LocationMapViewController: UIViewController {
     
-    var loggedIn: Bool { return Session.loggedIn }
+    var loggedIn = false
     var annotations = [MKPointAnnotation]()
     
     @IBOutlet weak var mapView: MKMapView!
@@ -17,10 +17,15 @@ class LocationMapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.delegate = self
         setUpNavBar()
         
         mapView.delegate = self
         getLocations()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setUpNavBar()
     }
     
     func getLocations() {
@@ -46,8 +51,7 @@ class LocationMapViewController: UIViewController {
 extension LocationMapViewController: UINavigationControllerDelegate {
     
     func setUpNavBar() {
-        navigationController?.delegate = self
-        
+        loggedIn = Session.loggedIn
         let logInOutButtonTitle = loggedIn ? "Log out" : "Log in"
         
         let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))
