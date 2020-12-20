@@ -21,7 +21,6 @@ class LoginViewController: UIViewController {
         setTextFieldDelegates()
     }
     
-    
     @IBAction func logInButtonTapped(_ sender: Any) {
         guard let username = emailTextField.text, let password = passwordTextField.text else {
             // FIXME: Display alert requesting username and password be entered
@@ -34,6 +33,11 @@ class LoginViewController: UIViewController {
     func handleSessionResponse(sessionId: String?, error: Error?) {
         if let sessionId = sessionId {
             Session.id = sessionId
+            print("Logged in")
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            let ac = UIAlertController(title: "Login failed", message: "Username or password incorrect", preferredStyle: .alert)
+            present(ac, animated: true, completion: nil)
         }
     }
     
@@ -48,7 +52,9 @@ extension LoginViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if emailTextField.hasText && passwordTextField.hasText {
-            // Log in
+            let username = emailTextField.text!
+            let password = passwordTextField.text!
+            OnTheMapAPI.postSession(username: username, password: password, completion: handleSessionResponse(sessionId:error:))
         }
         
         if let nextResponder = textField.superview?.viewWithTag(textField.tag + 1) {
