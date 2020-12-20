@@ -9,6 +9,8 @@ import UIKit
 
 class LocationListViewController: UITableViewController {
     
+    var loggedIn: Bool { return Session.loggedIn }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,7 +64,6 @@ extension LocationListViewController: UINavigationControllerDelegate {
     func setUpNavBar() {
         navigationController?.delegate = self
         
-        let loggedIn = false // Placeholder for when session has been set up
         let logInOutButtonTitle = loggedIn ? "Log out" : "Log in"
         
         let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))
