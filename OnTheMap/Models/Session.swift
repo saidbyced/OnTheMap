@@ -9,4 +9,7 @@ import Foundation
 
 struct Session {
     static var id = String()
+    static var loggedIn: Bool {
+        return id.count > 0
+    }
 }
