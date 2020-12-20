@@ -46,6 +46,10 @@ class LocationMapViewController: UIViewController {
         }
     }
     
+    func logOut() {
+        
+    }
+    
 }
 
 extension LocationMapViewController: UINavigationControllerDelegate {
@@ -64,7 +68,11 @@ extension LocationMapViewController: UINavigationControllerDelegate {
     }
     
     @objc func goToLogIn() {
-        performSegue(withIdentifier: "logIn", sender: self)
+        if loggedIn {
+            performSegue(withIdentifier: "logIn", sender: self)
+        } else {
+            logOut()
+        }
     }
     
 }

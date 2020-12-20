@@ -62,6 +62,10 @@ class LocationListViewController: UITableViewController {
         }
     }
     
+    func logOut() {
+        
+    }
+    
 }
 
 extension LocationListViewController: UINavigationControllerDelegate {
@@ -80,7 +84,11 @@ extension LocationListViewController: UINavigationControllerDelegate {
     }
     
     @objc func goToLogIn() {
-        performSegue(withIdentifier: "logIn", sender: self)
+        if loggedIn {
+            performSegue(withIdentifier: "logIn", sender: self)
+        } else {
+            logOut()
+        }
     }
     
 }
