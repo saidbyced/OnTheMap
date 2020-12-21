@@ -54,7 +54,7 @@ extension LoginViewController: UITextFieldDelegate {
         if emailTextField.hasText && passwordTextField.hasText {
             let username = emailTextField.text!
             let password = passwordTextField.text!
-            OnTheMapAPI.postSession(username: username, password: password, completion: handleSessionResponse(sessionId:error:))
+            OnTheMapAPI.postSession(username: username, password: password, completion: handleSessionResponse(success:error:))
         }
         
         if let nextResponder = textField.superview?.viewWithTag(textField.tag + 1) {
