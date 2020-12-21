@@ -61,12 +61,16 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		1B69AECE258925740080BDDD /* Login */ = {
+		1B69AECE258925740080BDDD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1B9D97002583D4C800CC53EB /* AppDelegate.swift */,
+				1B9D97022583D4C800CC53EB /* SceneDelegate.swift */,
+				1B69AEE0258A24D40080BDDD /* LocationMapViewController.swift */,
+				1B69AED1258928E80080BDDD /* LocationListViewController.swift */,
 				1B9D97042583D4C800CC53EB /* LoginViewController.swift */,
 			);
-			path = Login;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		1B69AECF2589258E0080BDDD /* Views */ = {
@@ -76,22 +80,6 @@
 				1B9D970B2583D4D000CC53EB /* LaunchScreen.storyboard */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		1B69AED4258928F00080BDDD /* LocationList */ = {
-			isa = PBXGroup;
-			children = (
-				1B69AED1258928E80080BDDD /* LocationListViewController.swift */,
-			);
-			path = LocationList;
-			sourceTree = "<group>";
-		};
-		1B69AEE3258A24D90080BDDD /* LocationMap */ = {
-			isa = PBXGroup;
-			children = (
-				1B69AEE0258A24D40080BDDD /* LocationMapViewController.swift */,
-			);
-			path = LocationMap;
 			sourceTree = "<group>";
 		};
 		1B790420258B6C830021A120 /* Models */ = {
@@ -124,12 +112,8 @@
 			children = (
 				1B790420258B6C830021A120 /* Models */,
 				1B69AECF2589258E0080BDDD /* Views */,
-				1B69AECE258925740080BDDD /* Login */,
-				1B69AEE3258A24D90080BDDD /* LocationMap */,
-				1B69AED4258928F00080BDDD /* LocationList */,
+				1B69AECE258925740080BDDD /* Controllers */,
 				1B5F39142583DC2F008FD47C /* API */,
-				1B9D97002583D4C800CC53EB /* AppDelegate.swift */,
-				1B9D97022583D4C800CC53EB /* SceneDelegate.swift */,
 				1B9D97092583D4D000CC53EB /* Assets.xcassets */,
 				1B9D970E2583D4D000CC53EB /* Info.plist */,
 			);
