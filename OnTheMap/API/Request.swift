@@ -112,7 +112,7 @@ struct OnTheMapAPI {
         task.resume()
     }
     
-    static func postSession(username: String, password: String, completion: @escaping (String?, Error?) -> Void) {
+    static func postSession(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = OnTheMapAPI.scheme
         urlComponents.host = OnTheMapAPI.host
@@ -134,14 +134,14 @@ struct OnTheMapAPI {
             if let error = error {
                 // FIXME: Handle request failure error response
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(false, error)
                 }
             }
             
             guard let data = data else {
                 // FIXME: Handle missing data error
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(false, error)
                 }
                 return
             }
@@ -155,12 +155,13 @@ struct OnTheMapAPI {
                 let sessionId = response.session.id
                 
                 DispatchQueue.main.async {
-                    completion(sessionId, nil)
+                    Session.id = sessionId
+                    completion(true, nil)
                 }
             } catch {
                 // FIXME: Handle JSON parsing error
                 DispatchQueue.main.async {
-                    completion(nil, error)
+                    completion(false, error)
                 }
             }
         }
@@ -196,7 +197,6 @@ struct OnTheMapAPI {
             if let error = error {
                 // FIXME: Handle request failure error response
                 DispatchQueue.main.async {
-                    print("Fail 1 - error")
                     completion(false, error)
                 }
                 return
@@ -205,7 +205,6 @@ struct OnTheMapAPI {
             guard let data = data else {
                 // FIXME: Handle missing data error
                 DispatchQueue.main.async {
-                    print("Fail 2 - data")
                     completion(false, error)
                 }
                 return
@@ -224,14 +223,12 @@ struct OnTheMapAPI {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        print("Fail 3 - response")
                         completion(false, nil)
                     }
                 }
             } catch {
                 // FIXME: Handle JSON parsing error
                 DispatchQueue.main.async {
-                    print("Fail 4 - JSON")
                     completion(false, nil)
                 }
             }
