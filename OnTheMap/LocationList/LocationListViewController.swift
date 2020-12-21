@@ -23,6 +23,8 @@ class LocationListViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        self.tabBarController?.tabBar.isHidden = false
+        
         setUpNavBar()
     }
     
