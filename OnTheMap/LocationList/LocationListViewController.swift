@@ -21,6 +21,8 @@ class LocationListViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         setUpNavBar()
     }
     
@@ -52,6 +54,10 @@ class LocationListViewController: UITableViewController {
         }
     }
     
+    func logOut() {
+        OnTheMapAPI.deleteSession(completion: handleLogOutResponse(success:error:))
+    }
+    
     func handleLocationsResponse(locations: [Location]?, error: Error?) {
         if let locations = locations {
             LocationList.locations = locations
@@ -62,8 +68,11 @@ class LocationListViewController: UITableViewController {
         }
     }
     
-    func logOut() {
-        
+    func handleLogOutResponse(success: Bool, error: Error?) {
+        if success {
+            print("Logged out")
+            viewDidAppear(false)
+        }
     }
     
 }
