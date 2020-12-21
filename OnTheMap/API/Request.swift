@@ -151,7 +151,7 @@ struct OnTheMapAPI {
                 let range = 5..<data.count
                 let skimmedData = data.subdata(in: range)
                 
-                let response = try JSONDecoder().decode(SessionResponse.self, from: skimmedData)
+                let response = try JSONDecoder().decode(SessionCreationResponse.self, from: skimmedData)
                 let sessionId = response.session.id
                 
                 DispatchQueue.main.async {
@@ -161,6 +161,78 @@ struct OnTheMapAPI {
                 // FIXME: Handle JSON parsing error
                 DispatchQueue.main.async {
                     completion(nil, error)
+                }
+            }
+        }
+        
+        task.resume()
+    }
+    
+    static func deleteSession(completion: @escaping (Bool, Error?) -> Void) {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = OnTheMapAPI.scheme
+        urlComponents.host = OnTheMapAPI.host
+        urlComponents.path = OnTheMapAPI.Path.session
+        
+        guard let url = urlComponents.url else {
+            // FIXME: Handle url creation error failure
+            print("URL creation failed")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                // FIXME: Handle request failure error response
+                DispatchQueue.main.async {
+                    print("Fail 1 - error")
+                    completion(false, error)
+                }
+                return
+            }
+            
+            guard let data = data else {
+                // FIXME: Handle missing data error
+                DispatchQueue.main.async {
+                    print("Fail 2 - data")
+                    completion(false, error)
+                }
+                return
+            }
+            
+            do {
+                // Remove first 5 characters from data - Udacity security precautions
+                let range = 5 ..< data.count
+                let skimmedData = data.subdata(in: range)
+                
+                let response = try JSONDecoder().decode(SessionDeletionResponse.self, from: skimmedData)
+                if response.session.id.count > 0 {
+                    DispatchQueue.main.async {
+                        Session.id = nil
+                        completion(true, nil)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        print("Fail 3 - response")
+                        completion(false, nil)
+                    }
+                }
+            } catch {
+                // FIXME: Handle JSON parsing error
+                DispatchQueue.main.async {
+                    print("Fail 4 - JSON")
+                    completion(false, nil)
                 }
             }
         }
