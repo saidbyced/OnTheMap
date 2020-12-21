@@ -27,14 +27,14 @@ class LoginViewController: UIViewController {
             return
         }
         
-        OnTheMapAPI.postSession(username: username, password: password, completion: handleSessionResponse(sessionId:error:))
+        OnTheMapAPI.postSession(username: username, password: password, completion: handleSessionResponse(success:error:))
     }
     
-    func handleSessionResponse(sessionId: String?, error: Error?) {
-        if let sessionId = sessionId {
-            Session.id = sessionId
+    func handleSessionResponse(success: Bool, error: Error?) {
+        if success {
             print("Logged in")
-            self.dismiss(animated: true, completion: nil)
+            goBack()
+            return
         } else {
             let ac = UIAlertController(title: "Login failed", message: "Username or password incorrect", preferredStyle: .alert)
             present(ac, animated: true, completion: nil)
@@ -64,5 +64,12 @@ extension LoginViewController: UITextFieldDelegate {
         }
         
         return true
+    }
+}
+
+extension LoginViewController: UINavigationControllerDelegate {
+    
+    func goBack() {
+        navigationController?.popViewController(animated: true)
     }
 }
