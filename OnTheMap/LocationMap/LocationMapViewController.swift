@@ -69,9 +69,9 @@ extension LocationMapViewController: UINavigationControllerDelegate {
     
     @objc func goToLogIn() {
         if loggedIn {
-            performSegue(withIdentifier: "logIn", sender: self)
-        } else {
             logOut()
+        } else {
+            performSegue(withIdentifier: "logIn", sender: self)
         }
     }
     
