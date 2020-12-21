@@ -25,6 +25,8 @@ class LocationMapViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         setUpNavBar()
     }
     
@@ -39,7 +41,6 @@ class LocationMapViewController: UIViewController {
     func logOut() {
         OnTheMapAPI.deleteSession(completion: handleLogOutResponse(success:error:))
     }
-
     
     func handleLocationsResponse(locations: [Location]?, error: Error?) {
         if let locations = locations {
