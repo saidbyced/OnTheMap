@@ -36,6 +36,11 @@ class LocationMapViewController: UIViewController {
         }
     }
     
+    func logOut() {
+        OnTheMapAPI.deleteSession(completion: handleLogOutResponse(success:error:))
+    }
+
+    
     func handleLocationsResponse(locations: [Location]?, error: Error?) {
         if let locations = locations {
             LocationList.locations = locations
@@ -46,8 +51,11 @@ class LocationMapViewController: UIViewController {
         }
     }
     
-    func logOut() {
-        
+    func handleLogOutResponse(success: Bool, error: Error?) {
+        if success {
+            print("Logged out")
+            viewDidAppear(true)
+        }
     }
     
 }
