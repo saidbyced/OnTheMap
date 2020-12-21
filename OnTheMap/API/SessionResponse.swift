@@ -7,8 +7,12 @@
 
 import Foundation
 
-struct SessionResponse: Codable {
+struct SessionCreationResponse: Codable {
     let account: AccountDetail
+    let session: SessionDetail
+}
+
+struct SessionDeletionResponse: Codable {
     let session: SessionDetail
 }
 
