@@ -69,7 +69,7 @@ extension LocationMapViewController: UINavigationControllerDelegate {
         
         let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddLocation))
         addButton.isEnabled = loggedIn
         
         navigationItem.leftBarButtonItem = logInOutButton
@@ -82,6 +82,10 @@ extension LocationMapViewController: UINavigationControllerDelegate {
         } else {
             performSegue(withIdentifier: "logIn", sender: self)
         }
+    }
+    
+    @objc func goToAddLocation() {
+        performSegue(withIdentifier: "addLocation", sender: self)
     }
     
 }
