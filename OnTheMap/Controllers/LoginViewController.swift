@@ -38,6 +38,7 @@ class LoginViewController: UIViewController {
             return
         } else {
             let ac = UIAlertController(title: "Login failed", message: "Username or password incorrect", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             present(ac, animated: true, completion: nil)
         }
     }
