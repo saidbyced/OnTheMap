@@ -35,8 +35,10 @@ class AddLocationSearchViewController: UIViewController {
                     return
                 }
                 
+                let uniqueKey = Int.random(in: 0..<999999999)
+                
                 AddLocation.locationToAdd = OnTheMapAPI.StudentLocationForPosting(
-                    uniqueKey: "XXX",
+                    uniqueKey: "\(uniqueKey)",
                     firstName: "John",
                     lastName: "Smith",
                     mapString: location,
