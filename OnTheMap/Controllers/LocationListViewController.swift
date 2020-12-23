@@ -83,7 +83,7 @@ extension LocationListViewController: UINavigationControllerDelegate {
         let logInOutButtonTitle = loggedIn ? "Log out" : "Log in"
         
         let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))
-        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshLocations))
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddLocation))
         addButton.isEnabled = loggedIn
         
@@ -97,6 +97,10 @@ extension LocationListViewController: UINavigationControllerDelegate {
         } else {
             performSegue(withIdentifier: "logIn", sender: self)
         }
+    }
+    
+    @objc func refreshLocations() {
+        UdacityClient.getLocations(completion: handleLocationsResponse(success:error:))
     }
     
     @objc func goToAddLocation() {
