@@ -53,14 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1B5F39142583DC2F008FD47C /* API */ = {
+		1B5F39142583DC2F008FD47C /* Web */ = {
 			isa = PBXGroup;
 			children = (
-				1B5F390E2583DC13008FD47C /* Client.swift */,
 				1B9BD3F725934A23003ACD2C /* API.swift */,
+				1B5F390E2583DC13008FD47C /* Client.swift */,
 				1B5F39112583DC1E008FD47C /* Responses.swift */,
 			);
-			path = API;
+			path = Web;
 			sourceTree = "<group>";
 		};
 		1B69AECE258925740080BDDD /* Controllers */ = {
@@ -116,7 +116,7 @@
 				1B790420258B6C830021A120 /* Models */,
 				1B69AECF2589258E0080BDDD /* Views */,
 				1B69AECE258925740080BDDD /* Controllers */,
-				1B5F39142583DC2F008FD47C /* API */,
+				1B5F39142583DC2F008FD47C /* Web */,
 				1B9D97092583D4D000CC53EB /* Assets.xcassets */,
 				1B9D970E2583D4D000CC53EB /* Info.plist */,
 			);

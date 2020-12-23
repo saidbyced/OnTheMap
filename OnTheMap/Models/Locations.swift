@@ -9,5 +9,5 @@ import Foundation
 
 struct Locations {
     static var list = [Location.Result]()
-    static var toAdd: OnTheMapAPI.StudentLocationForPosting?
+    static var toAdd: OnTheMapAPI.LocationForPosting?
 }

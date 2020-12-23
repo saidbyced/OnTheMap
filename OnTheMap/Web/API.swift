@@ -53,7 +53,7 @@ class OnTheMapAPI {
         }
     }
     
-    struct StudentLocationForPosting: Codable {
+    struct LocationForPosting: Codable {
         let uniqueKey: String
         let firstName: String
         let lastName: String

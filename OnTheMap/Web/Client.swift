@@ -54,7 +54,7 @@ struct UdacityClient {
         task.resume()
     }
     
-    static func postLocation(location: OnTheMapAPI.StudentLocationForPosting, completion: @escaping (Bool, Error?) -> Void) {
+    static func postLocation(location: OnTheMapAPI.LocationForPosting, completion: @escaping (Bool, Error?) -> Void) {
         let url = OnTheMapAPI.Endpoints.location.url
         
         var request = postRequestFor(url: url)
