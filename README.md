@@ -18,8 +18,8 @@ To run this project:
 * Clone this project
 * Open the project in Xcode
 * Build and run the app using ⌘R
-NOTE: to use the full functionality (the adding of locations) in the app you will need a Udacity login.
 
+NOTE: to use the full functionality (the adding of locations) in the app you will need a Udacity login.
 
 ## Credit
 This app was built using the API supplied by Udacity.
