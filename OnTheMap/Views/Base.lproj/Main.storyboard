@@ -193,7 +193,7 @@
             </objects>
             <point key="canvasLocation" x="-10175" y="-763"/>
         </scene>
-        <!--Add Location Search View Controller-->
+        <!--Add Location-->
         <scene sceneID="yg5-8L-8ma">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="W6J-gm-0b7" customClass="AddLocationSearchViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -249,7 +249,7 @@
                             <constraint firstItem="Cpc-Ge-50h" firstAttribute="centerX" secondItem="f30-LY-czm" secondAttribute="centerX" id="z0E-vY-uE5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Haa-T0-VaF"/>
+                    <navigationItem key="navigationItem" title="Add Location" id="Haa-T0-VaF"/>
                     <connections>
                         <outlet property="linkTextField" destination="j7s-Xe-eMQ" id="ewJ-ZI-Iiq"/>
                         <outlet property="locationTextField" destination="CLz-M5-lGr" id="Lnj-IC-mTw"/>
