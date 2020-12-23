@@ -62,7 +62,6 @@ class LocationListViewController: UITableViewController {
         if success {
             tableView.reloadData()
         } else {
-            // FIXME: Handle no locations received
             print(error?.localizedDescription ?? "Error: no locations")
         }
     }

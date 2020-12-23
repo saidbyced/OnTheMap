@@ -17,14 +17,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         setTextFieldDelegates()
     }
     
     @IBAction func logInButtonTapped(_ sender: Any) {
         guard let username = emailTextField.text, let password = passwordTextField.text else {
-            // FIXME: Display alert requesting username and password be entered
             return
         }
         

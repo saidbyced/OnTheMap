@@ -47,7 +47,6 @@ class LocationMapViewController: UIViewController {
         if success {
             updateLocations()
         } else {
-            // FIXME: Handle no locations received
             print(error?.localizedDescription ?? "Error: no locations")
         }
     }
