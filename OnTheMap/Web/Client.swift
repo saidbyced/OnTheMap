@@ -22,14 +22,12 @@ struct UdacityClient {
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
-                // FIXME: Handle request failure error response
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
             }
             
             guard let data = data else {
-                // FIXME: Handle missing data error
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
@@ -44,7 +42,6 @@ struct UdacityClient {
                     completion(true, nil)
                 }
             } catch {
-                // FIXME: Handle JSON parsing error
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
@@ -62,14 +59,12 @@ struct UdacityClient {
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                // FIXME: Handle request failure error response
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
             }
             
             guard let data = data else {
-                // FIXME: Handle missing data error
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
@@ -84,7 +79,6 @@ struct UdacityClient {
                     }
                 }
             } catch {
-                // FIXME: Handle JSON parsing error
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
@@ -103,14 +97,12 @@ struct UdacityClient {
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                // FIXME: Handle request failure error response
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
             }
             
             guard let data = data else {
-                // FIXME: Handle missing data error
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
@@ -130,7 +122,6 @@ struct UdacityClient {
                     completion(true, nil)
                 }
             } catch {
-                // FIXME: Handle JSON parsing error
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
@@ -157,7 +148,6 @@ struct UdacityClient {
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                // FIXME: Handle request failure error response
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
@@ -165,7 +155,6 @@ struct UdacityClient {
             }
             
             guard let data = data else {
-                // FIXME: Handle missing data error
                 DispatchQueue.main.async {
                     completion(false, error)
                 }
@@ -189,7 +178,6 @@ struct UdacityClient {
                     }
                 }
             } catch {
-                // FIXME: Handle JSON parsing error
                 DispatchQueue.main.async {
                     completion(false, nil)
                 }

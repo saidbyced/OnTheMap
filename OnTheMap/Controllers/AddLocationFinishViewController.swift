@@ -38,7 +38,6 @@ class AddLocationFinishViewController: UIViewController {
             }
             goBack()
         } else {
-            // FIXME: Handle failed location adding
             print("Location adding failed")
         }
     }
