@@ -15,12 +15,26 @@ class AddLocationFinishViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mapView.delegate = self
         mapView.addAnnotation(newLocation)
+        mapView.setCenter(newLocation.coordinate, animated: true)
         addCancelButton()
     }
     
     @IBAction func finishButtonTapped(_ sender: Any) {
-        goBack()
+        if let location = AddLocation.locationToAdd {
+            print(location)
+            OnTheMapAPI.postLocation(location: location, completion: handleAddingLocationResponse(success:error:))
+        }
+    }
+    
+    func handleAddingLocationResponse(success: Bool, error: Error?) {
+        if success {
+            print("Location added")
+            goBack()
+        } else {
+            print("Location adding failed")
+        }
     }
     
 }
@@ -63,4 +77,5 @@ extension AddLocationFinishViewController: MKMapViewDelegate {
         
         return annotationView
     }
+    
 }
