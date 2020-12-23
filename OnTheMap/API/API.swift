@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UdacityClient {
+class OnTheMapAPI {
     
     struct Session {
         static var id: String?
@@ -42,5 +42,24 @@ class UdacityClient {
         var url: URL {
             return URL(string: stringValue)!
         }
+    }
+    
+    struct UdacityLogin: Codable {
+        let udacity: LoginDetails
+        
+        struct LoginDetails: Codable {
+            let email: String
+            let password: String
+        }
+    }
+    
+    struct StudentLocationForPosting: Codable {
+        let uniqueKey: String
+        let firstName: String
+        let lastName: String
+        let mapString: String
+        let mediaURL: String
+        let latitude: Double
+        let longitude: Double
     }
 }

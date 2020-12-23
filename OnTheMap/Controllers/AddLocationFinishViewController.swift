@@ -22,16 +22,16 @@ class AddLocationFinishViewController: UIViewController {
     }
     
     @IBAction func finishButtonTapped(_ sender: Any) {
-        if let location = AddLocation.locationToAdd {
+        if let location = Location.toAdd {
             print(location)
-            OnTheMapAPI.postLocation(location: location, completion: handleAddingLocationResponse(success:error:))
+            UdacityClient.postLocation(location: location, completion: handleAddingLocationResponse(success:error:))
         }
     }
     
     func handleAddingLocationResponse(success: Bool, error: Error?) {
         if success {
             print("Location added")
-            OnTheMapAPI.getLocations { (success, error) in
+            UdacityClient.getLocations { (success, error) in
                 if success {
                     print("Got updated locations list")
                 }
@@ -61,7 +61,7 @@ extension AddLocationFinishViewController: UINavigationControllerDelegate {
 extension AddLocationFinishViewController: MKMapViewDelegate {
     
     var newLocation: MKAnnotation {
-        let location = AddLocation.locationToAdd
+        let location = Location.toAdd
         let latitude = CLLocationDegrees(location!.latitude)
         let longitude = CLLocationDegrees(location!.longitude)
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)

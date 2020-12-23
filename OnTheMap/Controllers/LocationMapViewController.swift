@@ -32,15 +32,15 @@ class LocationMapViewController: UIViewController {
     }
     
     func getLocations() {
-        if LocationList.count == 0 {
-            OnTheMapAPI.getLocations(completion: handleLocationsResponse(success:error:))
+        if Location.count == 0 {
+            UdacityClient.getLocations(completion: handleLocationsResponse(success:error:))
         } else {
             updateLocations()
         }
     }
     
     func logOut() {
-        OnTheMapAPI.deleteSession(completion: handleLogOutResponse(success:error:))
+        UdacityClient.deleteSession(completion: handleLogOutResponse(success:error:))
     }
     
     func handleLocationsResponse(success: Bool, error: Error?) {
@@ -64,7 +64,7 @@ class LocationMapViewController: UIViewController {
 extension LocationMapViewController: UINavigationControllerDelegate {
     
     func setUpNavBar() {
-        loggedIn = UdacityClient.Session.id != nil
+        loggedIn = OnTheMapAPI.Session.id != nil
         let logInOutButtonTitle = loggedIn ? "Log out" : "Log in"
         
         let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))
@@ -93,16 +93,16 @@ extension LocationMapViewController: UINavigationControllerDelegate {
 extension LocationMapViewController: MKMapViewDelegate {
     
     func addAnnotations(limit: Int) {
-        guard LocationList.count > 0 else { return }
+        guard Location.count > 0 else { return }
         
-        for location in LocationList.locations[0...(limit - 1)] {
+        for location in Location.list[0...(limit - 1)] {
             annotations.append(annotationFor(location))
         }
         
         self.mapView.addAnnotations(annotations)
     }
     
-    func annotationFor(_ location: Location) -> MKPointAnnotation {
+    func annotationFor(_ location: Result) -> MKPointAnnotation {
         let latitude = CLLocationDegrees(location.latitude)
         let longitude = CLLocationDegrees(location.longitude)
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)

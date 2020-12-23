@@ -7,26 +7,7 @@
 
 import Foundation
 
-struct OnTheMapAPI {
-    
-    struct UdacityLogin: Codable {
-        let udacity: LoginDetails
-        
-        struct LoginDetails: Codable {
-            let email: String
-            let password: String
-        }
-    }
-    
-    struct StudentLocationForPosting: Codable {
-        let uniqueKey: String
-        let firstName: String
-        let lastName: String
-        let mapString: String
-        let mediaURL: String
-        let latitude: Double
-        let longitude: Double
-    }
+struct UdacityClient {
     
     static func postRequestFor(url: URL) -> URLRequest {
         var request = URLRequest(url: url)
@@ -37,7 +18,7 @@ struct OnTheMapAPI {
     }
     
     static func getLocations(completion: @escaping (Bool, Error?) -> Void) {
-        let url = UdacityClient.Endpoints.getLocations.url
+        let url = OnTheMapAPI.Endpoints.getLocations.url
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
@@ -58,7 +39,7 @@ struct OnTheMapAPI {
             do {
                 let decodedData = try JSONDecoder().decode(LocationsResponse.self, from: data)
                 let locations = decodedData.results
-                LocationList.locations = locations
+                Location.list = locations
                 DispatchQueue.main.async {
                     completion(true, nil)
                 }
@@ -73,8 +54,8 @@ struct OnTheMapAPI {
         task.resume()
     }
     
-    static func postLocation(location: StudentLocationForPosting, completion: @escaping (Bool, Error?) -> Void) {
-        let url = UdacityClient.Endpoints.location.url
+    static func postLocation(location: OnTheMapAPI.StudentLocationForPosting, completion: @escaping (Bool, Error?) -> Void) {
+        let url = OnTheMapAPI.Endpoints.location.url
         
         var request = postRequestFor(url: url)
         request.httpBody = "{\"uniqueKey\": \"\(location.uniqueKey)\", \"firstName\": \"\(location.firstName)\", \"lastName\": \"\(location.lastName)\",\"mapString\": \"\(location.mapString)\", \"mediaURL\": \"\(location.mediaURL)\", \"latitude\": \(location.latitude), \"longitude\": \(location.longitude)}".data(using: .utf8)
@@ -114,7 +95,7 @@ struct OnTheMapAPI {
     }
     
     static func postSession(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
-        let url = UdacityClient.Endpoints.session.url
+        let url = OnTheMapAPI.Endpoints.session.url
         
         var request = postRequestFor(url: url)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -145,7 +126,7 @@ struct OnTheMapAPI {
                 let sessionId = response.session.id
                 
                 DispatchQueue.main.async {
-                    UdacityClient.Session.id = sessionId
+                    OnTheMapAPI.Session.id = sessionId
                     completion(true, nil)
                 }
             } catch {
@@ -160,7 +141,7 @@ struct OnTheMapAPI {
     }
     
     static func deleteSession(completion: @escaping (Bool, Error?) -> Void) {
-        let url = UdacityClient.Endpoints.session.url
+        let url = OnTheMapAPI.Endpoints.session.url
         
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
@@ -199,7 +180,7 @@ struct OnTheMapAPI {
                 let response = try JSONDecoder().decode(SessionDeletionResponse.self, from: skimmedData)
                 if response.session.id.count > 0 {
                     DispatchQueue.main.async {
-                        UdacityClient.Session.id = nil
+                        OnTheMapAPI.Session.id = nil
                         completion(true, nil)
                     }
                 } else {

@@ -31,11 +31,11 @@ class LocationListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return LocationList.count
+        return Location.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let location = LocationList.location(indexPath.row)
+        let location = Location.forIndex(indexPath.row)
         let name = "\(location.firstName.capitalized) \(location.lastName.capitalized)"
         let url = location.mediaURL
         
@@ -49,13 +49,13 @@ class LocationListViewController: UITableViewController {
     }
     
     func getLocations() {
-        if LocationList.count == 0 {
-            OnTheMapAPI.getLocations(completion: handleLocationsResponse(success:error:))
+        if Location.count == 0 {
+            UdacityClient.getLocations(completion: handleLocationsResponse(success:error:))
         }
     }
     
     func logOut() {
-        OnTheMapAPI.deleteSession(completion: handleLogOutResponse(success:error:))
+        UdacityClient.deleteSession(completion: handleLogOutResponse(success:error:))
     }
     
     func handleLocationsResponse(success: Bool, error: Error?) {
@@ -79,7 +79,7 @@ class LocationListViewController: UITableViewController {
 extension LocationListViewController: UINavigationControllerDelegate {
     
     func setUpNavBar() {
-        loggedIn = UdacityClient.Session.id != nil
+        loggedIn = OnTheMapAPI.Session.id != nil
         let logInOutButtonTitle = loggedIn ? "Log out" : "Log in"
         
         let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))

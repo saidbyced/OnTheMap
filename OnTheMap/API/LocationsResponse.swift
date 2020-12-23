@@ -8,10 +8,10 @@
 import Foundation
 
 struct LocationsResponse: Codable {
-    let results: [Location]
+    let results: [Result]
 }
 
-struct Location: Codable {
+struct Result: Codable {
     let firstName, lastName: String
     let longitude, latitude: Double
     let mapString, mediaURL, uniqueKey, objectId, createdAt, updatedAt: String

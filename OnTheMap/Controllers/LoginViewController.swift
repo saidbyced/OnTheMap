@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
             return
         }
         
-        OnTheMapAPI.postSession(username: username, password: password, completion: handleSessionResponse(success:error:))
+        UdacityClient.postSession(username: username, password: password, completion: handleSessionResponse(success:error:))
     }
     
     func handleSessionResponse(success: Bool, error: Error?) {
@@ -56,7 +56,7 @@ extension LoginViewController: UITextFieldDelegate {
         if emailTextField.hasText && passwordTextField.hasText {
             let username = emailTextField.text!
             let password = passwordTextField.text!
-            OnTheMapAPI.postSession(username: username, password: password, completion: handleSessionResponse(success:error:))
+            UdacityClient.postSession(username: username, password: password, completion: handleSessionResponse(success:error:))
         }
         
         if let nextResponder = textField.superview?.viewWithTag(textField.tag + 1) {
