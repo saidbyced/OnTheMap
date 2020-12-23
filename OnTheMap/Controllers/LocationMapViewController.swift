@@ -34,7 +34,7 @@ class LocationMapViewController: UIViewController {
         if LocationList.count == 0 {
             OnTheMapAPI.getLocations(completion: handleLocationsResponse(success:error:))
         } else {
-            self.addAnnotations(limit: 100)
+            updateLocations()
         }
     }
     
@@ -44,7 +44,7 @@ class LocationMapViewController: UIViewController {
     
     func handleLocationsResponse(success: Bool, error: Error?) {
         if success {
-            self.addAnnotations(limit: 100)
+            updateLocations()
         } else {
             // FIXME: Handle no locations received
             print(error?.localizedDescription ?? "Error: no locations")
@@ -125,6 +125,13 @@ extension LocationMapViewController: MKMapViewDelegate {
         annotationView.canShowCallout = true
         
         return annotationView
+    }
+    
+    func updateLocations() {
+        if mapView.annotations.count > 0 {
+            self.mapView.removeAnnotations(mapView.annotations)
+        }
+        self.addAnnotations(limit: 100)
     }
     
 }
