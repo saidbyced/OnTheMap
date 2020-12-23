@@ -31,11 +31,11 @@ class LocationListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Location.count
+        return Locations.list.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let location = Location.forIndex(indexPath.row)
+        let location = Locations.list[indexPath.row]
         let name = "\(location.firstName.capitalized) \(location.lastName.capitalized)"
         let url = location.mediaURL
         
@@ -49,7 +49,7 @@ class LocationListViewController: UITableViewController {
     }
     
     func getLocations() {
-        if Location.count == 0 {
+        if Locations.list.count == 0 {
             UdacityClient.getLocations(completion: handleLocationsResponse(success:error:))
         }
     }

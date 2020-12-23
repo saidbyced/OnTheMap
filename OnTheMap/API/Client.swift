@@ -1,5 +1,5 @@
 //
-//  Request.swift
+//  Client.swift
 //  OnTheMap
 //
 //  Created by Chris Eadie on 11/12/2020.
@@ -37,9 +37,9 @@ struct UdacityClient {
             }
             
             do {
-                let decodedData = try JSONDecoder().decode(LocationsResponse.self, from: data)
+                let decodedData = try JSONDecoder().decode(Location.Response.self, from: data)
                 let locations = decodedData.results
-                Location.list = locations
+                Locations.list = locations
                 DispatchQueue.main.async {
                     completion(true, nil)
                 }
@@ -77,7 +77,7 @@ struct UdacityClient {
             }
             
             do {
-                let confirmation = try JSONDecoder().decode(CreationResponse.self, from: data)
+                let confirmation = try JSONDecoder().decode(Location.CreationResponse.self, from: data)
                 if confirmation.createdAt.count > 0 {
                     DispatchQueue.main.async {
                         completion(true, nil)
@@ -122,7 +122,7 @@ struct UdacityClient {
                 let range = 5..<data.count
                 let skimmedData = data.subdata(in: range)
                 
-                let response = try JSONDecoder().decode(SessionCreationResponse.self, from: skimmedData)
+                let response = try JSONDecoder().decode(Session.CreationResponse.self, from: skimmedData)
                 let sessionId = response.session.id
                 
                 DispatchQueue.main.async {
@@ -177,7 +177,7 @@ struct UdacityClient {
                 let range = 5 ..< data.count
                 let skimmedData = data.subdata(in: range)
                 
-                let response = try JSONDecoder().decode(SessionDeletionResponse.self, from: skimmedData)
+                let response = try JSONDecoder().decode(Session.DeletionResponse.self, from: skimmedData)
                 if response.session.id.count > 0 {
                     DispatchQueue.main.async {
                         OnTheMapAPI.Session.id = nil

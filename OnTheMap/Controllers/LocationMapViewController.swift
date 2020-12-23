@@ -32,7 +32,7 @@ class LocationMapViewController: UIViewController {
     }
     
     func getLocations() {
-        if Location.count == 0 {
+        if Locations.list.count == 0 {
             UdacityClient.getLocations(completion: handleLocationsResponse(success:error:))
         } else {
             updateLocations()
@@ -93,16 +93,16 @@ extension LocationMapViewController: UINavigationControllerDelegate {
 extension LocationMapViewController: MKMapViewDelegate {
     
     func addAnnotations(limit: Int) {
-        guard Location.count > 0 else { return }
+        guard Locations.list.count > 0 else { return }
         
-        for location in Location.list[0...(limit - 1)] {
+        for location in Locations.list[0...(limit - 1)] {
             annotations.append(annotationFor(location))
         }
         
         self.mapView.addAnnotations(annotations)
     }
     
-    func annotationFor(_ location: Result) -> MKPointAnnotation {
+    func annotationFor(_ location: Location.Result) -> MKPointAnnotation {
         let latitude = CLLocationDegrees(location.latitude)
         let longitude = CLLocationDegrees(location.longitude)
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
