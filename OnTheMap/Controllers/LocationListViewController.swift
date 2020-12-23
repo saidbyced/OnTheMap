@@ -24,6 +24,7 @@ class LocationListViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         setUpNavBar()
+        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -83,7 +84,7 @@ extension LocationListViewController: UINavigationControllerDelegate {
         
         let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))
         let refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddLocation))
         addButton.isEnabled = loggedIn
         
         navigationItem.leftBarButtonItem = logInOutButton
@@ -96,6 +97,10 @@ extension LocationListViewController: UINavigationControllerDelegate {
         } else {
             performSegue(withIdentifier: "logIn", sender: self)
         }
+    }
+    
+    @objc func goToAddLocation() {
+        performSegue(withIdentifier: "addLocation", sender: self)
     }
     
 }
