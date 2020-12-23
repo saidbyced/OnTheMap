@@ -28,6 +28,7 @@ class LocationMapViewController: UIViewController {
         super.viewDidAppear(animated)
         
         setUpNavBar()
+        updateLocations()
     }
     
     func getLocations() {
@@ -63,7 +64,7 @@ class LocationMapViewController: UIViewController {
 extension LocationMapViewController: UINavigationControllerDelegate {
     
     func setUpNavBar() {
-        loggedIn = Session.loggedIn
+        loggedIn = UdacityClient.Session.id != nil
         let logInOutButtonTitle = loggedIn ? "Log out" : "Log in"
         
         let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))

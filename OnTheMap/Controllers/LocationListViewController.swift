@@ -79,7 +79,7 @@ class LocationListViewController: UITableViewController {
 extension LocationListViewController: UINavigationControllerDelegate {
     
     func setUpNavBar() {
-        loggedIn = Session.loggedIn
+        loggedIn = UdacityClient.Session.id != nil
         let logInOutButtonTitle = loggedIn ? "Log out" : "Log in"
         
         let logInOutButton = UIBarButtonItem(title: logInOutButtonTitle, style: .plain, target: self, action: #selector(goToLogIn))

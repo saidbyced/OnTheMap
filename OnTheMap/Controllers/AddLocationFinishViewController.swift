@@ -31,8 +31,14 @@ class AddLocationFinishViewController: UIViewController {
     func handleAddingLocationResponse(success: Bool, error: Error?) {
         if success {
             print("Location added")
+            OnTheMapAPI.getLocations { (success, error) in
+                if success {
+                    print("Got updated locations list")
+                }
+            }
             goBack()
         } else {
+            // FIXME: Handle failed location adding
             print("Location adding failed")
         }
     }
