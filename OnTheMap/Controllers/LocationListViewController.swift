@@ -50,7 +50,7 @@ class LocationListViewController: UITableViewController {
     
     func getLocations() {
         if LocationList.count == 0 {
-            OnTheMapAPI.getLocations(completion: handleLocationsResponse(locations:error:))
+            OnTheMapAPI.getLocations(completion: handleLocationsResponse(success:error:))
         }
     }
     
@@ -58,9 +58,8 @@ class LocationListViewController: UITableViewController {
         OnTheMapAPI.deleteSession(completion: handleLogOutResponse(success:error:))
     }
     
-    func handleLocationsResponse(locations: [Location]?, error: Error?) {
-        if let locations = locations {
-            LocationList.locations = locations
+    func handleLocationsResponse(success: Bool, error: Error?) {
+        if success {
             tableView.reloadData()
         } else {
             // FIXME: Handle no locations received

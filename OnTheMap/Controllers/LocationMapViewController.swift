@@ -32,7 +32,7 @@ class LocationMapViewController: UIViewController {
     
     func getLocations() {
         if LocationList.count == 0 {
-            OnTheMapAPI.getLocations(completion: handleLocationsResponse(locations:error:))
+            OnTheMapAPI.getLocations(completion: handleLocationsResponse(success:error:))
         } else {
             self.addAnnotations(limit: 100)
         }
@@ -42,9 +42,8 @@ class LocationMapViewController: UIViewController {
         OnTheMapAPI.deleteSession(completion: handleLogOutResponse(success:error:))
     }
     
-    func handleLocationsResponse(locations: [Location]?, error: Error?) {
-        if let locations = locations {
-            LocationList.locations = locations
+    func handleLocationsResponse(success: Bool, error: Error?) {
+        if success {
             self.addAnnotations(limit: 100)
         } else {
             // FIXME: Handle no locations received
