@@ -24,21 +24,30 @@ class AddLocationFinishViewController: UIViewController {
     @IBAction func finishButtonTapped(_ sender: Any) {
         if let location = Locations.toAdd {
             print(location)
-            UdacityClient.postLocation(location: location, completion: handleAddingLocationResponse(success:error:))
+            UdacityClient.postLocation(location: location, completion: handleAddingLocationResponse(success:errorMessage:))
         }
     }
     
-    func handleAddingLocationResponse(success: Bool, error: Error?) {
+    func handleAddingLocationResponse(success: Bool, errorMessage: String?) {
         if success {
             print("Location added")
             UdacityClient.getLocations { (success, error) in
                 if success {
                     print("Got updated locations list")
+                } else {
+                    let errorMessage = errorMessage ?? "Unable to get student locations"
+                    let ac = UIAlertController(title: "Location request failed", message: errorMessage, preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(ac, animated: true, completion: nil)
                 }
             }
             goBack()
         } else {
-            print("Location adding failed")
+            let errorMessage = errorMessage ?? "Unable to create location"
+            let ac = UIAlertController(title: "Location sending failed", message: errorMessage, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(ac, animated: true, completion: nil)
+            return
         }
     }
     

@@ -58,7 +58,7 @@ struct UdacityClient {
         task.resume()
     }
     
-    static func postLocation(location: OnTheMapAPI.LocationForPosting, completion: @escaping (Bool, Error?) -> Void) {
+    static func postLocation(location: OnTheMapAPI.LocationForPosting, completion: @escaping (Bool, String?) -> Void) {
         let url = OnTheMapAPI.Endpoints.location.url
         
         var request = postRequestFor(url: url)
@@ -67,13 +67,13 @@ struct UdacityClient {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async {
-                    completion(false, error)
+                    completion(false, error.localizedDescription)
                 }
             }
             
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(false, error)
+                    completion(false, error?.localizedDescription)
                 }
                 return
             }
@@ -86,8 +86,15 @@ struct UdacityClient {
                     }
                 }
             } catch {
-                DispatchQueue.main.async {
-                    completion(false, error)
+                do {
+                    let failureData = try JSONDecoder().decode(Failure.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(false, failureData.error)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(false, error.localizedDescription)
+                    }
                 }
             }
         }
