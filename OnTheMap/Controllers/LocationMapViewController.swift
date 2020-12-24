@@ -95,10 +95,10 @@ extension LocationMapViewController: UINavigationControllerDelegate {
 
 extension LocationMapViewController: MKMapViewDelegate {
     
-    func addAnnotations(limit: Int) {
+    func addAnnotations() {
         guard Locations.list.count > 0 else { return }
         
-        for location in Locations.list[0...(limit - 1)] {
+        for location in Locations.list {
             annotations.append(annotationFor(location))
         }
         
@@ -135,7 +135,7 @@ extension LocationMapViewController: MKMapViewDelegate {
         if mapView.annotations.count > 0 {
             self.mapView.removeAnnotations(mapView.annotations)
         }
-        self.addAnnotations(limit: 100)
+        self.addAnnotations()
     }
     
 }

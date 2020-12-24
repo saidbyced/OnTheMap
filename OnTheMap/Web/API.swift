@@ -19,8 +19,8 @@ class OnTheMapAPI {
         static let studentLocationPath = "/v1/StudentLocation"
         static let sessionPath = "/v1/session"
         
-        static let limitParam = "limit=200"
-        static let skipParam = "skip=200"
+        static let limitParam = "limit=100"
+        static let skipParam = "skip=100"
         static let orderParam = "order=-updatedAt"
         static let uniqueKeyParam = "uniqueKey=ABC"
         
