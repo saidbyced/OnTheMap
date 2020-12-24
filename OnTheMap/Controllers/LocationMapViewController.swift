@@ -46,8 +46,8 @@ class LocationMapViewController: UIViewController {
         if success {
             updateLocations()
         } else {
-            let errorMessage = errorMessage ?? "Unable to get syudent locations"
-            let ac = UIAlertController(title: "Login failed", message: errorMessage, preferredStyle: .alert)
+            let errorMessage = errorMessage ?? "Unable to get student locations"
+            let ac = UIAlertController(title: "Location request failed", message: errorMessage, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             present(ac, animated: true, completion: nil)
             return
