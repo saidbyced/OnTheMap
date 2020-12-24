@@ -49,6 +49,19 @@ class LocationListViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let urlString = Locations.list[indexPath.row].mediaURL
+        
+        guard let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) else {
+            let ac = UIAlertController(title: "Cannot open link", message: "URL provided is not a valid website", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(ac, animated: true, completion: nil)
+            return
+        }
+        
+        UIApplication.shared.open(url)
+    }
+    
     func getLocations() {
         if Locations.list.count == 0 {
             UdacityClient.getLocations(completion: handleLocationsResponse(success:errorMessage:))
