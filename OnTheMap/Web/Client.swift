@@ -126,12 +126,10 @@ struct UdacityClient {
                     print(String(decoding: skimmedData, as: UTF8.self))
                     let failureData = try JSONDecoder().decode(Failure.self, from: skimmedData)
                     DispatchQueue.main.async {
-                        print("Error1")
                         completion(false, failureData.error)
                     }
                 } catch {
                     DispatchQueue.main.async {
-                        print("Error2")
                         completion(false, error.localizedDescription)
                     }
                 }
