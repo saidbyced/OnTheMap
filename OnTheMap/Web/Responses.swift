@@ -51,3 +51,8 @@ struct Session {
     }
 
 }
+
+struct Failure: Codable {
+    let status: Int
+    let error: String
+}

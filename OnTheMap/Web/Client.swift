@@ -88,7 +88,7 @@ struct UdacityClient {
         task.resume()
     }
     
-    static func postSession(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
+    static func postSession(username: String, password: String, completion: @escaping (Bool, String?) -> Void) {
         let url = OnTheMapAPI.Endpoints.session.url
         
         var request = postRequestFor(url: url)
@@ -98,22 +98,22 @@ struct UdacityClient {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async {
-                    completion(false, error)
+                    completion(false, error.localizedDescription)
                 }
             }
             
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(false, error)
+                    completion(false, error?.localizedDescription)
                 }
                 return
             }
             
+            // Remove first 5 characters from data - Udacity security precautions
+            let range = 5..<data.count
+            let skimmedData = data.subdata(in: range)
+            
             do {
-                // Remove first 5 characters from data - Udacity security precautions
-                let range = 5..<data.count
-                let skimmedData = data.subdata(in: range)
-                
                 let response = try JSONDecoder().decode(Session.CreationResponse.self, from: skimmedData)
                 let sessionId = response.session.id
                 
@@ -122,8 +122,18 @@ struct UdacityClient {
                     completion(true, nil)
                 }
             } catch {
-                DispatchQueue.main.async {
-                    completion(false, error)
+                do {
+                    print(String(decoding: skimmedData, as: UTF8.self))
+                    let failureData = try JSONDecoder().decode(Failure.self, from: skimmedData)
+                    DispatchQueue.main.async {
+                        print("Error1")
+                        completion(false, failureData.error)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        print("Error2")
+                        completion(false, error.localizedDescription)
+                    }
                 }
             }
         }

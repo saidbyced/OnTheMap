@@ -26,18 +26,20 @@ class LoginViewController: UIViewController {
             return
         }
         
-        UdacityClient.postSession(username: username, password: password, completion: handleSessionResponse(success:error:))
+        UdacityClient.postSession(username: username, password: password, completion: handleSessionResponse(success:errorMessage:))
     }
     
-    func handleSessionResponse(success: Bool, error: Error?) {
+    func handleSessionResponse(success: Bool, errorMessage: String?) {
         if success {
             print("Logged in")
             goBack()
             return
         } else {
-            let ac = UIAlertController(title: "Login failed", message: "Username or password incorrect", preferredStyle: .alert)
+            let errorMessage = errorMessage ?? "Unable to login in"
+            let ac = UIAlertController(title: "Login failed", message: errorMessage, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             present(ac, animated: true, completion: nil)
+            return
         }
     }
     
@@ -54,7 +56,7 @@ extension LoginViewController: UITextFieldDelegate {
         if emailTextField.hasText && passwordTextField.hasText {
             let username = emailTextField.text!
             let password = passwordTextField.text!
-            UdacityClient.postSession(username: username, password: password, completion: handleSessionResponse(success:error:))
+            UdacityClient.postSession(username: username, password: password, completion: handleSessionResponse(success:errorMessage:))
         }
         
         if let nextResponder = textField.superview?.viewWithTag(textField.tag + 1) {
