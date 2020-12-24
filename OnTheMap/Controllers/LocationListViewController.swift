@@ -51,7 +51,7 @@ class LocationListViewController: UITableViewController {
     
     func getLocations() {
         if Locations.list.count == 0 {
-            UdacityClient.getLocations(completion: handleLocationsResponse(success:error:))
+            UdacityClient.getLocations(completion: handleLocationsResponse(success:errorMessage:))
         }
     }
     
@@ -59,11 +59,15 @@ class LocationListViewController: UITableViewController {
         UdacityClient.deleteSession(completion: handleLogOutResponse(success:error:))
     }
     
-    func handleLocationsResponse(success: Bool, error: Error?) {
+    func handleLocationsResponse(success: Bool, errorMessage: String?) {
         if success {
             tableView.reloadData()
         } else {
-            print(error?.localizedDescription ?? "Error: no locations")
+            let errorMessage = errorMessage ?? "Unable to get syudent locations"
+            let ac = UIAlertController(title: "Login failed", message: errorMessage, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            present(ac, animated: true, completion: nil)
+            return
         }
     }
     
@@ -100,7 +104,7 @@ extension LocationListViewController: UINavigationControllerDelegate {
     }
     
     @objc func refreshLocations() {
-        UdacityClient.getLocations(completion: handleLocationsResponse(success:error:))
+        UdacityClient.getLocations(completion: handleLocationsResponse(success:errorMessage:))
     }
     
     @objc func goToAddLocation() {

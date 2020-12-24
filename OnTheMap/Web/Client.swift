@@ -17,33 +17,40 @@ struct UdacityClient {
         return request
     }
     
-    static func getLocations(completion: @escaping (Bool, Error?) -> Void) {
+    static func getLocations(completion: @escaping (Bool, String?) -> Void) {
         let url = OnTheMapAPI.Endpoints.getLocations.url
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async {
-                    completion(false, error)
+                    completion(false, error.localizedDescription)
                 }
             }
             
             guard let data = data else {
                 DispatchQueue.main.async {
-                    completion(false, error)
+                    completion(false, error?.localizedDescription)
                 }
                 return
             }
             
             do {
                 let decodedData = try JSONDecoder().decode(Location.Response.self, from: data)
-                let locations = decodedData.results
-                Locations.list = locations
+                Locations.list = decodedData.results
+                
                 DispatchQueue.main.async {
                     completion(true, nil)
                 }
             } catch {
-                DispatchQueue.main.async {
-                    completion(false, error)
+                do {
+                    let failureData = try JSONDecoder().decode(Failure.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(false, failureData.error)
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        completion(false, error.localizedDescription)
+                    }
                 }
             }
         }
@@ -123,7 +130,6 @@ struct UdacityClient {
                 }
             } catch {
                 do {
-                    print(String(decoding: skimmedData, as: UTF8.self))
                     let failureData = try JSONDecoder().decode(Failure.self, from: skimmedData)
                     DispatchQueue.main.async {
                         completion(false, failureData.error)
