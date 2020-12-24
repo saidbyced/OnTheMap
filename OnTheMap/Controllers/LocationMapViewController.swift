@@ -10,7 +10,6 @@ import MapKit
 class LocationMapViewController: UIViewController {
     
     var loggedIn = false
-    var annotations = [MKPointAnnotation]()
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -102,6 +101,8 @@ extension LocationMapViewController: MKMapViewDelegate {
     func addAnnotations() {
         guard Locations.list.count > 0 else { return }
         
+        var annotations = [MKAnnotation]()
+        
         for location in Locations.list {
             annotations.append(annotationFor(location))
         }
@@ -136,9 +137,7 @@ extension LocationMapViewController: MKMapViewDelegate {
     }
     
     func updateLocations() {
-        if mapView.annotations.count > 0 {
-            self.mapView.removeAnnotations(mapView.annotations)
-        }
+        self.mapView.removeAnnotations(mapView.annotations)
         self.addAnnotations()
     }
     
